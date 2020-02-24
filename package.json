@@ -3,14 +3,5 @@
   "version": "2.0.2-beta",
   "description": "A Vue.js plugin that makes it easy to share reactive data between components.",
   "main": "src/index.js",
-  "scripts": {
-    "compile": "babel --presets=es2015 -d dist src",
-    "prepublish": "npm run compile"
-  },
-  "author": "Cody Mercer",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-preset-es2015": "^6.9.0"
-  }
+  "author": "Cody Mercer"
 }
