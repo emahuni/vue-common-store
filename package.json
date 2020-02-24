@@ -1,6 +1,6 @@
 {
   "name": "vue-common-store",
-  "version": "v2.0.1-beta-nested",
+  "version": "2.0.2-beta",
   "description": "A Vue.js plugin that makes it easy to share reactive data between components.",
   "main": "src/index.js",
   "scripts": {
