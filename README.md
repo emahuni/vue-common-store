@@ -133,14 +133,14 @@ Vue.component('user-card', {
 *Note: The end result of examples 1-4 are equivalent.*
 
 ##### 3.) Access the store directly.
-This plugin sets `Vue.prototype.$store` which allows any component to access the store via `vm.$store`.
+This plugin sets `Vue.prototype.$cstore` which allows any component to access the store via `vm.$cstore`.
 ```js
 Vue.component('user-card', {
     // Use `ready` for Vue 1.x
     mounted() {
-        console.log(this.$store.user.name); // 'cody';
-        this.$store.user.name = 'john doe';
-        console.log(this.$store.user.name); // 'john doe';
+        console.log(this.$cstore.user.name); // 'cody';
+        this.$cstore.user.name = 'john doe';
+        console.log(this.$cstore.user.name); // 'john doe';
     }
 });
 ```
