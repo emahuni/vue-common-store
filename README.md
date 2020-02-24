@@ -1,4 +1,4 @@
-# vue-stash
+# vue-common-store
 
 A [Vue.js](http://vuejs.org) plugin that makes it easy to share reactive data between components.
 
@@ -10,13 +10,13 @@ For complex applications I would recommend the official VueJS state management p
 ##### 1.) Install package via NPM
 
 ```
-$ npm install vue-stash
+$ npm install vue-common-store
 ```
 
 ##### 2.) Install plugin within project.
 ```js
 import Vue from 'vue';
-import VueStash from 'vue-stash';
+import VueStash from 'vue-common-store';
 
 Vue.use(VueStash)
 ```
@@ -25,7 +25,7 @@ or
 
 ```js
 window.Vue = require('vue');
-require('vue-stash');
+require('vue-common-store');
 ```
 
 ## Usage
@@ -146,7 +146,6 @@ Vue.component('user-card', {
 ```
 
 ## Demo
-If you'd like to demo `vue-stash` try [vue-mix](https://github.com/cklmercer/vue-mix)
 
 ## License
 
