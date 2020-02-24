@@ -28,4 +28,6 @@ function getOwnerStore (src, key) {
     if (typeof src.$data.cstore !== 'undefined' && typeof src.$data.cstore[key] !== 'undefined')
       return src.cstore;
   } while (src = src.$parent);
+
+  throw new Error(`unable to get cstore key: ${key}`);
 }
