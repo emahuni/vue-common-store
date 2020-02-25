@@ -56,7 +56,7 @@ function registerStore (vm) {
       for (var key in vm.$options.cstore) {
         if (typeof vm.$options.cstore[key] == 'function') {
           // Handle a function
-          vm.$options.computed[key] = new StoreAccessor(vm.$options.cstore[key](vm.$root.cstore, vm));
+          vm.$options.computed[key] = new StoreAccessor(vm.$options.cstore[key](vm.$root.cstore, vm), true);
         } else if (typeof vm.$options.cstore[key] == 'string') {
           // Handle a string
           vm.$options.computed[key] = new StoreAccessor(vm.$options.cstore[key]);

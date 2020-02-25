@@ -3,5 +3,5 @@
   "version": "2.1.1",
   "description": "A Vue.js plugin that makes it easy to share reactive data between components.",
   "main": "src/index.js",
-  "author": "Cody Mercer"
+  "author": "Emmanuel Mahuni"
 }

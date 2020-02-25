@@ -1,6 +1,8 @@
-export default function (key) {
+export default function (key, isFunc = false) {
   return {
     get () {
+      if(isFunc) return key;
+
       let path = key.split('.');
       return path.reduce((pValue, cValue) => {
         return pValue[cValue];
@@ -8,6 +10,8 @@ export default function (key) {
     },
 
     set (value) {
+      if(isFunc) return; // todo run setter in function somehow (meaning a dynamic key will be able to set things if it's a class)
+
       let path = key.split('.');
       let length = path.length - 1;
       let store = getOwnerStore(this, path[0]);

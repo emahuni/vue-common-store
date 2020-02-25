@@ -1,13 +1,20 @@
 # vue-common-store
 
-A [Vue.js](http://vuejs.org) plugin that makes it easy to share reactive data between components.
+A [Vue.js](http://vuejs.org) plugin that makes it easy to share reactive data between components, with useful functionality.
 
-This plugin is best suited for the rapid development of prototypes. This plugin is not intended to be used for complex applications.
-For complex applications I would recommend the official VueJS state management plugin, [Vuex](https://github.com/vuejs/vuex)
+This plugin can work alongside the official VueJS state management plugin, [Vuex](https://github.com/vuejs/vuex). There are some times when you need to share state with lean code that has no restrictions.
 
 ## Installation
 
-##### 1.) Install package via NPM
+##### 1.) Install package:
+ 
+ via Yarn
+
+```
+$ yarn add vue-common-store
+```
+
+via NPM
 
 ```
 $ npm install vue-common-store
@@ -19,6 +26,19 @@ import Vue from 'vue';
 import VueStash from 'vue-common-store';
 
 Vue.use(VueStash)
+```
+
+if you use Quasar, or something similar, do this in boot file. NB: this skips next step (Initialize your store object), as you are doing it here.
+```js
+export default function ({ app, Vue }) {
+ app.data = {
+  cstore: {
+      user: {
+          name: 'cody'
+      }
+  }
+ }
+};
 ```
 
 or
@@ -37,7 +57,7 @@ Your store object is nothing more than a simple Javascript object set within you
 new Vue({
     el: '#app',
     data: {
-        store: {
+        cstore: {
             user: {
                 name: 'cody'
             }
@@ -48,11 +68,11 @@ new Vue({
 
 _Alternatively, you can import your store from another file._
 ```js
-import store from './store';
+import cstore from './store';
 
 new Vue({
     el: '#app',
-    data: { store }
+    data: { cstore }
 })
 ```
 
@@ -70,7 +90,7 @@ export default {
 *Example 1: Simplest usage*
 ```js
 Vue.component('user-card', {
-    store: ['user'],
+    cstore: ['user'],
     // Use `ready` for Vue 1.x
     mounted() {
         console.log(this.user.name); // 'cody'
@@ -84,7 +104,7 @@ Vue.component('user-card', {
 
 ```js
 Vue.component('user-card', {
-    store: {
+    cstore: {
         user: 'user'
     },
     // Use `ready` for Vue 1.x
@@ -100,7 +120,7 @@ Vue.component('user-card', {
 
 ```js
 Vue.component('user-card', {
-    store: {
+    cstore: {
         name: 'user.name'
     },
     // Use `ready` for Vue 1.x
@@ -116,17 +136,23 @@ Vue.component('user-card', {
 
 ```js
 Vue.component('user-card', {
-    store: {
-        name(cstore, vm) {
-            // passed in the root.cstore and vm for easier ref. This refers to the vm.cstore
-            return 'user.name';
+    cstore: {
+        name(store, vm) {
+            // passed in the root.cstore and 'user-card' vm for easier ref. 'this' refers to the vm.cstore (NB: function is not a lambda)
+            // return the data that is dynamically calculated
+            return store.user.name;
+        },
+    
+        hasName(store, vm) {
+            return !!store.user.name;
         }
     },
     // Use `ready` for Vue 1.x
     mounted() {
         console.log(this.name); // 'cody'
-        this.name = 'john doe';
-        console.log(this.name); // 'john doe'
+        console.log(this.hasName); // true
+        // this.name = 'john doe'; // can't be done, yet
+        // console.log(this.name); // 'john doe'
     }
 });
 ```
@@ -140,13 +166,19 @@ Vue.component('user-card', {
     // Use `ready` for Vue 1.x
     mounted() {
         console.log(this.$cstore.user.name); // 'cody';
-        this.$cstore.user.name = 'john doe';
-        console.log(this.$cstore.user.name); // 'john doe';
+        // this.$cstore.user.name = 'john doe'; // not working yet WIP
+        // console.log(this.$cstore.user.name); // 'john doe';
     }
 });
 ```
 
-## Demo
+## Author
+Emmanuel Mahuni - vue-common-store
+
+## Attribution
+Cody Mercer - vue-stash
+Sean Ferguson - vue-stash-nested
+
 
 ## License
 
