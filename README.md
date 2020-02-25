@@ -117,7 +117,8 @@ Vue.component('user-card', {
 ```js
 Vue.component('user-card', {
     store: {
-        name() {
+        name(cstore, vm) {
+            // passed in the root.cstore and vm for easier ref. This refers to the vm.cstore
             return 'user.name';
         }
     },
